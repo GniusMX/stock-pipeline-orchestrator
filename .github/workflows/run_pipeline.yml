@@ -1,1 +1,53 @@
+name: Run Full Stock Pipeline
+
+on:
+  workflow_dispatch: # 手動実行用ボタンを設定
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install yfinance pandas numpy
+
+      # --- 1. stock-data-ai の実行と自動コミット ---
+      - name: 1. Run stock-data-ai
+        run: |
+          git clone https://x-access-token:${{ secrets.GHA_PAT }}@github.com/GniusMX/stock-data-ai.git repo1
+          cd repo1
+          python main.py
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff-index --quiet HEAD || (git commit -m "Auto: Update market data" && git push)
+
+      # --- 2. stock-rule-parameters の実行と自動コミット ---
+      - name: 2. Run stock-rule-parameters
+        run: |
+          git clone https://x-access-token:${{ secrets.GHA_PAT }}@github.com/GniusMX/stock-rule-parameters.git repo2
+          cd repo2
+          python main.py
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff-index --quiet HEAD || (git commit -m "Auto: Update parameters" && git push)
+
+      # --- 3. stock-rule-engine の実行と自動コミット ---
+      - name: 3. Run stock-rule-engine
+        env:
+          PARAMETER_REPO_TOKEN: ${{ secrets.GHA_PAT }}
+        run: |
+          git clone https://x-access-token:${{ secrets.GHA_PAT }}@github.com/GniusMX/stock-rule-engine.git repo3
+          cd repo3
+          python main.py
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff-index --quiet HEAD || (git commit -m "Auto: Update rule decisions" && git push)
 
