@@ -2,7 +2,7 @@ name: Run Full Stock Pipeline
 
 on:
   schedule:
-    - cron: '37 21 * * *' # 日本時間 06:37（UTC 21:37）
+    - cron: '17 21 * * *' # 日本時間 06:37（UTC 21:37）
   workflow_dispatch: # 手動実行用ボタン
 
 jobs:
