@@ -1,0 +1,101 @@
+name: Run Intraday Decision (ベンザイテンシステム 場中判定)
+
+# 場中判定モード: 米国の引け前（米東部 15:13 ごろ）に ①② を走らせ、③ を --intraday で実行し、
+# intraday_decision.txt だけをコミットする。日次の run_pipeline.yaml はそのまま使う。
+#
+# GitHub の cron は UTC 固定で夏時間に追随しないため、2本登録して、
+# 「米東部の時刻が 15:00〜15:55 の平日」のときだけ実行する（もう1本は自動でスキップ）。
+#   夏時間（3月〜11月初め）: UTC 19:13 = 米東部 15:13（日本時間 04:13）
+#   冬時間（11月初め〜3月）: UTC 20:13 = 米東部 15:13（日本時間 05:13）
+# 手動実行（workflow_dispatch）は時刻に関係なく実行する。
+
+on:
+  schedule:
+    - cron: '13 19 * * 1-5'
+    - cron: '13 20 * * 1-5'
+  workflow_dispatch:
+
+concurrency:
+  group: stock-pipeline
+  cancel-in-progress: false
+
+jobs:
+  run-intraday:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: 0. 場中の時刻か確かめる
+        id: guard
+        run: |
+          NY_HM=$(TZ=America/New_York date +%H:%M)
+          NY_DOW=$(TZ=America/New_York date +%u)
+          M=$((10#${NY_HM%:*} * 60 + 10#${NY_HM#*:}))
+          echo "米東部の現在時刻: $NY_HM（曜日 $NY_DOW）"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "go=1" >> "$GITHUB_OUTPUT"
+          elif [ "$NY_DOW" -le 5 ] && [ "$M" -ge 900 ] && [ "$M" -le 955 ]; then
+            echo "go=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "米東部 15:00〜15:55 の平日ではないためスキップします（夏時間・冬時間のもう一方の登録分）"
+            echo "go=0" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up Python
+        if: steps.guard.outputs.go == '1'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        if: steps.guard.outputs.go == '1'
+        run: |
+          pip install yfinance pandas numpy scikit-learn==1.8.0
+
+      # --- 1. stock-data-ai（場中の暫定バーを含めて取得） ---
+      - name: 1. Run stock-data-ai (intraday)
+        if: steps.guard.outputs.go == '1'
+        run: |
+          # データを取った時刻（米東部）を ③ の --time に渡す
+          echo "FETCH_TIME=$(TZ=America/New_York date +%H:%M)" >> "$GITHUB_ENV"
+          git clone https://x-access-token:${{ secrets.GHA_PAT }}@github.com/GniusMX/stock-data-ai.git repo1
+          cd repo1
+          python main.py
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff-index --quiet HEAD || (git commit -m "Auto: Intraday market data (provisional)" && git push)
+
+      # --- 2. stock-rule-parameters（③ はGitHub上のCSVを読むので push が必要） ---
+      - name: 2. Run stock-rule-parameters (intraday)
+        if: steps.guard.outputs.go == '1'
+        run: |
+          git clone https://x-access-token:${{ secrets.GHA_PAT }}@github.com/GniusMX/stock-rule-parameters.git repo2
+          cd repo2
+          python main.py
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add SMH_rule_parameters.csv QQQ_rule_parameters.csv
+          git diff --staged --quiet || (git commit -m "Auto: Intraday parameters (provisional)" && git push)
+
+      # --- 3. stock-rule-engine を場中判定モードで実行 ---
+      - name: 3. Run stock-rule-engine (--intraday)
+        if: steps.guard.outputs.go == '1'
+        env:
+          PARAMETER_REPO_TOKEN: ${{ secrets.GHA_PAT }}
+        run: |
+          git clone https://x-access-token:${{ secrets.GHA_PAT }}@github.com/GniusMX/stock-rule-engine.git repo3
+          cd repo3
+          echo "データ取得時刻（米東部）: $FETCH_TIME"
+          python main.py --intraday --time "$FETCH_TIME"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # 場中の結果だけをコミットする（判定CSVと日次の latest_rule_decision.txt は日次の実行に任せる）
+          git add intraday_decision.txt
+          git diff --staged --quiet || (git commit -m "Auto: Intraday decision" && git push)
+
+      - name: 4. 結果を実行ログにも表示
+        if: steps.guard.outputs.go == '1'
+        run: |
+          sed -n '1,40p' repo3/intraday_decision.txt
