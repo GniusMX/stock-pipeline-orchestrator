@@ -1,18 +1,23 @@
 name: Run Intraday Decision (ベンザイテンシステム 場中判定)
 
-# 場中判定モード: 米国の引け前（米東部 15:13 ごろ）に ①② を走らせ、③ を --intraday で実行し、
-# intraday_decision.txt だけをコミットする。日次の run_pipeline.yaml はそのまま使う。
+# 場中判定モード: 日本時間 04:00 / 05:00 / 05:30 / 05:45（米国の平日）に自動で起動し、
+# ①② を走らせてから ③ を --intraday で実行し、intraday_decision.txt だけをコミットする。
+# 日次の run_pipeline.yaml はそのまま使う。
 #
-# GitHub の cron は UTC 固定で夏時間に追随しないため、2本登録して、
-# 「米東部の時刻が 15:00〜15:55 の平日」のときだけ実行する（もう1本は自動でスキップ）。
-#   夏時間（3月〜11月初め）: UTC 19:13 = 米東部 15:13（日本時間 04:13）
-#   冬時間（11月初め〜3月）: UTC 20:13 = 米東部 15:13（日本時間 05:13）
-# 手動実行（workflow_dispatch）は時刻に関係なく実行する。
+# GitHub の cron は UTC。日本時間 = UTC + 9 時間。
+#   04:00 JST = UTC 19:00 / 05:00 JST = UTC 20:00 / 05:30 JST = UTC 20:30 / 05:45 JST = UTC 20:45
+#   （曜日 1-5 は UTC の月〜金 = 米国の月〜金 = 日本時間の火〜土の早朝）
+# 米東部の時刻（冬時間 11月初め〜3月 / 夏時間 3月〜11月初め）:
+#   04:00 JST → 14:00 / 15:00、05:00 JST → 15:00 / 16:00、05:30 JST → 15:30 / 16:30、05:45 JST → 15:45 / 16:45
+# 夏時間の 05:00・05:30・05:45 は米国の引け（16:00）後になるため、自動ではスキップする
+# （引け後の判定は日次の run_pipeline.yaml で行う）。手動実行（workflow_dispatch）は時刻に関係なく実行する。
 
 on:
   schedule:
-    - cron: '13 19 * * 1-5'
-    - cron: '13 20 * * 1-5'
+    - cron: '0 19 * * 1-5'    # 日本時間 04:00
+    - cron: '0 20 * * 1-5'    # 日本時間 05:00
+    - cron: '30 20 * * 1-5'   # 日本時間 05:30
+    - cron: '45 20 * * 1-5'   # 日本時間 05:45
   workflow_dispatch:
 
 concurrency:
@@ -35,10 +40,10 @@ jobs:
           echo "米東部の現在時刻: $NY_HM（曜日 $NY_DOW）"
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "go=1" >> "$GITHUB_OUTPUT"
-          elif [ "$NY_DOW" -le 5 ] && [ "$M" -ge 900 ] && [ "$M" -le 955 ]; then
+          elif [ "$NY_DOW" -le 5 ] && [ "$M" -ge 570 ] && [ "$M" -lt 960 ]; then
             echo "go=1" >> "$GITHUB_OUTPUT"
           else
-            echo "米東部 15:00〜15:55 の平日ではないためスキップします（夏時間・冬時間のもう一方の登録分）"
+            echo "米国の場中（米東部 9:30〜16:00 の平日）ではないためスキップします（夏時間の 05:00〜05:45 は引け後のため）"
             echo "go=0" >> "$GITHUB_OUTPUT"
           fi
 
@@ -93,7 +98,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           # 場中の結果だけをコミットする（判定CSVと日次の latest_rule_decision.txt は日次の実行に任せる）
           git add intraday_decision.txt
-          git diff --staged --quiet || (git commit -m "Auto: Intraday decision" && git push)
+          git diff --staged --quiet || (git commit -m "Auto: Intraday decision (ET $FETCH_TIME)" && git push)
 
       - name: 4. 結果を実行ログにも表示
         if: steps.guard.outputs.go == '1'
