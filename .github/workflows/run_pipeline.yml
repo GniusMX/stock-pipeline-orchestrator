@@ -33,6 +33,8 @@ jobs:
 
       # --- 2. stock-rule-parameters の実行と自動コミット ---
       - name: 2. Run stock-rule-parameters
+        env:
+          GHA_PAT: ${{ secrets.GHA_PAT }}   # stock-data-ai を非公開にしても読めるよう、② に渡す
         run: |
           git clone https://x-access-token:${{ secrets.GHA_PAT }}@github.com/GniusMX/stock-rule-parameters.git repo2
           cd repo2
