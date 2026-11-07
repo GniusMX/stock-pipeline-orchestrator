@@ -33,6 +33,8 @@ jobs:
             git commit -m "Auto: Update market data"
             ok=0
             for i in 1 2 3 4 5; do
+              # コミットしなかった変更（今回は保存の対象外）が残っていると pull --rebase が止まるため、先に捨てる
+              git checkout -- .
               if git pull --rebase -X theirs origin main && git push; then ok=1; break; fi
               echo "push失敗（他の更新と重なった）。${i}回目。待って再試行します"
               git rebase --abort 2>/dev/null || true
@@ -56,6 +58,8 @@ jobs:
             git commit -m "Auto: Update parameters"
             ok=0
             for i in 1 2 3 4 5; do
+              # コミットしなかった変更（今回は保存の対象外）が残っていると pull --rebase が止まるため、先に捨てる
+              git checkout -- .
               if git pull --rebase -X theirs origin main && git push; then ok=1; break; fi
               echo "push失敗（他の更新と重なった）。${i}回目。待って再試行します"
               git rebase --abort 2>/dev/null || true
@@ -79,6 +83,8 @@ jobs:
             git commit -m "Auto: Update rule decisions"
             ok=0
             for i in 1 2 3 4 5; do
+              # コミットしなかった変更（今回は保存の対象外）が残っていると pull --rebase が止まるため、先に捨てる
+              git checkout -- .
               if git pull --rebase -X theirs origin main && git push; then ok=1; break; fi
               echo "push失敗（他の更新と重なった）。${i}回目。待って再試行します"
               git rebase --abort 2>/dev/null || true
