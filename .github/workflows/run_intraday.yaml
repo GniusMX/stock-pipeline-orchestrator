@@ -1,23 +1,18 @@
 name: Run Intraday Decision (ベンザイテンシステム 場中判定)
 
-# 場中判定モード: 日本時間 04:00 / 05:00 / 05:30 / 05:45（米国の平日）に自動で起動し、
+# 場中判定モード: スケジュールでは、日本時間 03:00（米国の平日）に1回だけ自動で起動する。
 # ①② を走らせてから ③ を --intraday で実行し、intraday_decision.txt だけをコミットする。
-# 日次の run_pipeline.yaml はそのまま使う。
+# 日次の run_pipeline.yaml はそのまま使う。手動実行（workflow_dispatch）はいつでもできる。
 #
 # GitHub の cron は UTC。日本時間 = UTC + 9 時間。
-#   04:00 JST = UTC 19:00 / 05:00 JST = UTC 20:00 / 05:30 JST = UTC 20:30 / 05:45 JST = UTC 20:45
-#   （曜日 1-5 は UTC の月〜金 = 米国の月〜金 = 日本時間の火〜土の早朝）
-# 米東部の時刻（冬時間 11月初め〜3月 / 夏時間 3月〜11月初め）:
-#   04:00 JST → 14:00 / 15:00、05:00 JST → 15:00 / 16:00、05:30 JST → 15:30 / 16:30、05:45 JST → 15:45 / 16:45
-# 夏時間の 05:00・05:30・05:45 は米国の引け（16:00）後になるため、自動ではスキップする
-# （引け後の判定は日次の run_pipeline.yaml で行う）。手動実行（workflow_dispatch）は時刻に関係なく実行する。
+#   03:00 JST = UTC 18:00（曜日 1-5 は UTC の月〜金 = 米国の月〜金 = 日本時間の火〜土の早朝）
+# 米東部の時刻: 冬時間（11月初め〜3月）13:00 / 夏時間（3月〜11月初め）14:00。どちらも引け（16:00）の3時間前／2時間前。
+# 注意: GitHub の定時実行は混雑で数分〜数十分遅れることがある。引けに近いほど場中の ML の見積もりは正確になる。
+# 時刻のガード（下の手順0）は、場中でないときだけスキップする。
 
 on:
   schedule:
-    - cron: '0 19 * * 1-5'    # 日本時間 04:00
-    - cron: '0 20 * * 1-5'    # 日本時間 05:00
-    - cron: '30 20 * * 1-5'   # 日本時間 05:30
-    - cron: '45 20 * * 1-5'   # 日本時間 05:45
+    - cron: '0 18 * * 1-5'    # 日本時間 03:00
   workflow_dispatch:
 
 concurrency:
@@ -70,7 +65,17 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git diff-index --quiet HEAD || (git commit -m "Auto: Intraday market data (provisional)" && git push)
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "Auto: Intraday market data (provisional)"
+            ok=0
+            for i in 1 2 3 4 5; do
+              if git pull --rebase -X theirs origin main && git push; then ok=1; break; fi
+              echo "push失敗（他の更新と重なった）。${i}回目。待って再試行します"
+              git rebase --abort 2>/dev/null || true
+              sleep $((i * 8))
+            done
+            [ "$ok" = 1 ] || exit 1
+          fi
 
       # --- 2. stock-rule-parameters（③ はGitHub上のCSVを読むので push が必要） ---
       - name: 2. Run stock-rule-parameters (intraday)
@@ -84,7 +89,17 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add SMH_rule_parameters.csv QQQ_rule_parameters.csv
-          git diff --staged --quiet || (git commit -m "Auto: Intraday parameters (provisional)" && git push)
+          if ! git diff --staged --quiet; then
+            git commit -m "Auto: Intraday parameters (provisional)"
+            ok=0
+            for i in 1 2 3 4 5; do
+              if git pull --rebase -X theirs origin main && git push; then ok=1; break; fi
+              echo "push失敗（他の更新と重なった）。${i}回目。待って再試行します"
+              git rebase --abort 2>/dev/null || true
+              sleep $((i * 8))
+            done
+            [ "$ok" = 1 ] || exit 1
+          fi
 
       # --- 3. stock-rule-engine を場中判定モードで実行 ---
       - name: 3. Run stock-rule-engine (--intraday)
@@ -100,7 +115,17 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           # 場中の結果だけをコミットする（判定CSVと日次の latest_rule_decision.txt は日次の実行に任せる）
           git add intraday_decision.txt
-          git diff --staged --quiet || (git commit -m "Auto: Intraday decision (ET $FETCH_TIME)" && git push)
+          if ! git diff --staged --quiet; then
+            git commit -m "Auto: Intraday decision (ET $FETCH_TIME)"
+            ok=0
+            for i in 1 2 3 4 5; do
+              if git pull --rebase -X theirs origin main && git push; then ok=1; break; fi
+              echo "push失敗（他の更新と重なった）。${i}回目。待って再試行します"
+              git rebase --abort 2>/dev/null || true
+              sleep $((i * 8))
+            done
+            [ "$ok" = 1 ] || exit 1
+          fi
 
       - name: 4. 結果を実行ログにも表示
         if: steps.guard.outputs.go == '1'
