@@ -38,6 +38,10 @@ jobs:
 
       # --- 2. stock-rule-parameters の実行と自動コミット ---
       - name: 2. Run stock-rule-parameters
+        env:
+          # 2026-11: stock-data-ai のCSVを読むときにトークンを使う（取得が404になるのを防ぐ。公開でも非公開でも動く）
+          DATA_REPO_TOKEN: ${{ secrets.GHA_PAT }}
+          GHA_PAT: ${{ secrets.GHA_PAT }}
         run: |
           git clone --depth 1 https://x-access-token:${{ secrets.GHA_PAT }}@github.com/GniusMX/stock-rule-parameters.git repo2
           cd repo2
