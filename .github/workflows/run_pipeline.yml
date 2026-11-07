@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PYTHONDONTWRITEBYTECODE: "1"  # a5_ml.py の __pycache__ を作らない（git add . で誤ってコミットされるのを防ぐ）
+      PYTHONUNBUFFERED: "1"         # 2026-11: ログの時刻が実際の進み具合と一致するように（どこで時間がかかっているかを見やすくする）
     steps:
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -20,75 +21,41 @@ jobs:
         run: |
           pip install yfinance pandas numpy scikit-learn==1.8.0
 
+      # 2026-11: 3つのリポジトリとも、最新の状態だけを取る（--depth 1）。
+      #   以前は全履歴を取っていたため、毎日のコミットで履歴が大きくなるほど、取得（clone）に時間がかかっていた。
+      #   最新の状態だけでも、実行・コミット・push は従来どおり動く。
+
       # --- 1. stock-data-ai の実行と自動コミット ---
       - name: 1. Run stock-data-ai
         run: |
-          git clone https://x-access-token:${{ secrets.GHA_PAT }}@github.com/GniusMX/stock-data-ai.git repo1
+          git clone --depth 1 https://x-access-token:${{ secrets.GHA_PAT }}@github.com/GniusMX/stock-data-ai.git repo1
           cd repo1
           python main.py
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          if ! git diff-index --quiet HEAD; then
-            git commit -m "Auto: Update market data"
-            ok=0
-            for i in 1 2 3 4 5; do
-              # コミットしなかった変更（今回は保存の対象外）が残っていると pull --rebase が止まるため、先に捨てる
-              git checkout -- .
-              if git pull --rebase -X theirs origin main && git push; then ok=1; break; fi
-              echo "push失敗（他の更新と重なった）。${i}回目。待って再試行します"
-              git rebase --abort 2>/dev/null || true
-              sleep $((i * 8))
-            done
-            [ "$ok" = 1 ] || exit 1
-          fi
+          git diff-index --quiet HEAD || (git commit -m "Auto: Update market data" && git push)
 
       # --- 2. stock-rule-parameters の実行と自動コミット ---
       - name: 2. Run stock-rule-parameters
-        env:
-          GHA_PAT: ${{ secrets.GHA_PAT }}   # stock-data-ai を非公開にしても読めるよう、② に渡す
         run: |
-          git clone https://x-access-token:${{ secrets.GHA_PAT }}@github.com/GniusMX/stock-rule-parameters.git repo2
+          git clone --depth 1 https://x-access-token:${{ secrets.GHA_PAT }}@github.com/GniusMX/stock-rule-parameters.git repo2
           cd repo2
           python main.py
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add SMH_rule_parameters.csv QQQ_rule_parameters.csv
-          if ! git diff --staged --quiet; then
-            git commit -m "Auto: Update parameters"
-            ok=0
-            for i in 1 2 3 4 5; do
-              # コミットしなかった変更（今回は保存の対象外）が残っていると pull --rebase が止まるため、先に捨てる
-              git checkout -- .
-              if git pull --rebase -X theirs origin main && git push; then ok=1; break; fi
-              echo "push失敗（他の更新と重なった）。${i}回目。待って再試行します"
-              git rebase --abort 2>/dev/null || true
-              sleep $((i * 8))
-            done
-            [ "$ok" = 1 ] || exit 1
-          fi
+          git diff --staged --quiet || (git commit -m "Auto: Update parameters" && git push)
 
       # --- 3. stock-rule-engine の実行と自動コミット ---
       - name: 3. Run stock-rule-engine
         env:
           PARAMETER_REPO_TOKEN: ${{ secrets.GHA_PAT }}
         run: |
-          git clone https://x-access-token:${{ secrets.GHA_PAT }}@github.com/GniusMX/stock-rule-engine.git repo3
+          git clone --depth 1 https://x-access-token:${{ secrets.GHA_PAT }}@github.com/GniusMX/stock-rule-engine.git repo3
           cd repo3
           python main.py
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add SMH_rule_decisions.csv QQQ_rule_decisions.csv latest_rule_decision.txt
-          if ! git diff --staged --quiet; then
-            git commit -m "Auto: Update rule decisions"
-            ok=0
-            for i in 1 2 3 4 5; do
-              # コミットしなかった変更（今回は保存の対象外）が残っていると pull --rebase が止まるため、先に捨てる
-              git checkout -- .
-              if git pull --rebase -X theirs origin main && git push; then ok=1; break; fi
-              echo "push失敗（他の更新と重なった）。${i}回目。待って再試行します"
-              git rebase --abort 2>/dev/null || true
-              sleep $((i * 8))
-            done
-            [ "$ok" = 1 ] || exit 1
-          fi
+          git diff --staged --quiet || (git commit -m "Auto: Update rule decisions" && git push)
