@@ -29,7 +29,17 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git diff-index --quiet HEAD || (git commit -m "Auto: Update market data" && git push)
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "Auto: Update market data"
+            ok=0
+            for i in 1 2 3 4 5; do
+              if git pull --rebase -X theirs origin main && git push; then ok=1; break; fi
+              echo "push失敗（他の更新と重なった）。${i}回目。待って再試行します"
+              git rebase --abort 2>/dev/null || true
+              sleep $((i * 8))
+            done
+            [ "$ok" = 1 ] || exit 1
+          fi
 
       # --- 2. stock-rule-parameters の実行と自動コミット ---
       - name: 2. Run stock-rule-parameters
@@ -42,7 +52,17 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add SMH_rule_parameters.csv QQQ_rule_parameters.csv
-          git diff --staged --quiet || (git commit -m "Auto: Update parameters" && git push)
+          if ! git diff --staged --quiet; then
+            git commit -m "Auto: Update parameters"
+            ok=0
+            for i in 1 2 3 4 5; do
+              if git pull --rebase -X theirs origin main && git push; then ok=1; break; fi
+              echo "push失敗（他の更新と重なった）。${i}回目。待って再試行します"
+              git rebase --abort 2>/dev/null || true
+              sleep $((i * 8))
+            done
+            [ "$ok" = 1 ] || exit 1
+          fi
 
       # --- 3. stock-rule-engine の実行と自動コミット ---
       - name: 3. Run stock-rule-engine
@@ -55,4 +75,14 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add SMH_rule_decisions.csv QQQ_rule_decisions.csv latest_rule_decision.txt
-          git diff --staged --quiet || (git commit -m "Auto: Update rule decisions" && git push)
+          if ! git diff --staged --quiet; then
+            git commit -m "Auto: Update rule decisions"
+            ok=0
+            for i in 1 2 3 4 5; do
+              if git pull --rebase -X theirs origin main && git push; then ok=1; break; fi
+              echo "push失敗（他の更新と重なった）。${i}回目。待って再試行します"
+              git rebase --abort 2>/dev/null || true
+              sleep $((i * 8))
+            done
+            [ "$ok" = 1 ] || exit 1
+          fi
