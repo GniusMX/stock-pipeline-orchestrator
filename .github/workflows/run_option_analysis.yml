@@ -1,0 +1,108 @@
+name: Run Option Analysis（オプション分析）
+
+# 2026-11-15: ① stock-data-ai のオプション分析（option_analysis.py）を、④から手動で実行する。
+#   結果は、この実行の画面（Summary）と、④の option_analysis/OPTION_ANALYSIS.md（いつも最新）に出す。
+#   ①にも、①のアクション（option-analysis.yml）と同じく options_analysis/ を保存する（偏りの σ の記録を貯めるため）。
+#   参考の情報で、ベンザイテンシステムの判定には使わない。所要は2〜4分。
+#   板は米国の取引時間外（日本時間の昼〜夕方）に崩れることがあるため、日本時間 23:30〜翌12時ごろの実行が確実。
+
+on:
+  workflow_dispatch:
+    inputs:
+      symbols:
+        description: "銘柄（空白区切り・最大6つ。例: SMH QQQ SOXX NVDA）"
+        required: false
+        default: "SMH QQQ"
+
+# このアクションどうしが同時に走らないように
+concurrency:
+  group: option-analysis
+  cancel-in-progress: false
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    permissions:
+      contents: write   # ④ に結果（option_analysis/）を保存する
+
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+
+    steps:
+      - name: 0. このリポジトリ（④）を取得
+        uses: actions/checkout@v4
+        with:
+          path: orch
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # --- 1. stock-data-ai を取得 ---
+      - name: 1. stock-data-ai を取得
+        run: |
+          git clone --depth 1 https://x-access-token:${{ secrets.GHA_PAT }}@github.com/GniusMX/stock-data-ai.git repo1
+          pip install -r repo1/requirements.txt
+
+      # --- 2. オプション分析（報告はこの実行の画面〈Summary〉にも出る） ---
+      - name: 2. オプション分析を実行
+        env:
+          # 入力は環境変数で渡す（コマンドに直接埋め込まない）。銘柄の形は option_analysis.py で確かめる
+          SYMBOLS: ${{ github.event.inputs.symbols }}
+        run: |
+          cd repo1
+          python option_analysis.py
+
+      # --- 3. ① に保存（σ の記録を貯める） ---
+      - name: 3. stock-data-ai に保存
+        run: |
+          cd repo1
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add options_analysis
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Update option analysis (from stock-pipeline-orchestrator)"
+          ok=0
+          for i in 1 2 3 4 5; do
+            git checkout -- .
+            if git pull --rebase -X theirs origin main && git push origin main; then ok=1; break; fi
+            echo "push失敗（他の更新と重なった）。${i}回目。待って再試行します"
+            git rebase --abort 2>/dev/null || true
+            sleep $((i * 8))
+          done
+          [ "$ok" = 1 ] || exit 1
+
+      # --- 4. ④ に保存（最新の報告） ---
+      - name: 4. このリポジトリ（④）に保存
+        run: |
+          mkdir -p orch/option_analysis
+          cp repo1/options_analysis/OPTION_ANALYSIS.md orch/option_analysis/OPTION_ANALYSIS.md
+          cd orch
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add option_analysis/OPTION_ANALYSIS.md
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Option analysis ($(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M') JST)"
+          ok=0
+          for i in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin HEAD:main; then ok=1; break; fi
+            echo "push失敗。${i}回目。待って再試行します"
+            git rebase --abort 2>/dev/null || true
+            sleep $((i * 5))
+          done
+          [ "$ok" = 1 ] || exit 1
+
+      - name: 5. 結論を実行ログにも表示
+        run: |
+          sed -n '1,14p' repo1/options_analysis/OPTION_ANALYSIS.md
