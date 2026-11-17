@@ -2,8 +2,14 @@ name: Run Full Stock Pipeline
 
 on:
   schedule:
-    - cron: '37 21 * * *' # 日本時間 06:37（UTC 21:37）
+    - cron: '37 21 * * *' # 日本時間 06:37（UTC 21:37）。引けの直後の判定（ML の最新日は暫定）
+    - cron: '37 10 * * 1-5' # ★2026-11（第233回）: 日本時間 19:37（UTC 10:37、月〜金）。寄付き前の確定の判定（引けから12時間以上たち、ML の最新日が凍結される）
   workflow_dispatch: # 手動実行用ボタン
+
+# ★2026-11（第233回）: 場中判定と同じ組にして、同時に動かないようにする（後から動いた方が待つ。push の食い違いを防ぐ）
+concurrency:
+  group: stock-pipeline
+  cancel-in-progress: false
 
 jobs:
   run-pipeline:
