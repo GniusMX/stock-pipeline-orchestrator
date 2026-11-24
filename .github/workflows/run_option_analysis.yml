@@ -4,6 +4,7 @@ name: Run Option Analysis（オプション分析）
 #   結果は、この実行の画面（Summary）と、④の option_analysis/OPTION_ANALYSIS.md（いつも最新）に出す。
 #   ①にも、①のアクション（option-analysis.yml）と同じく options_analysis/ を保存する（偏りの σ の記録を貯めるため）。
 #   参考の情報で、ベンザイテンシステムの判定には使わない。所要は2〜4分。
+# 2026-11-24: オプション分析 v5 の図（<銘柄>_options_chart.svg）も④に写す（報告の中の図が④の画面でも出るように）。
 #   板は米国の取引時間外（日本時間の昼〜夕方）に崩れることがあるため、日本時間 23:30〜翌12時ごろの実行が確実。
 
 on:
@@ -85,10 +86,15 @@ jobs:
         run: |
           mkdir -p orch/option_analysis
           cp repo1/options_analysis/OPTION_ANALYSIS.md orch/option_analysis/OPTION_ANALYSIS.md
+          # 図（v5）: 前回の図を消してから、今回の銘柄の図を写す
+          rm -f orch/option_analysis/*_options_chart.svg
+          for f in repo1/options_analysis/*_options_chart.svg; do
+            if [ -e "$f" ]; then cp "$f" orch/option_analysis/; fi
+          done
           cd orch
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add option_analysis/OPTION_ANALYSIS.md
+          git add -A option_analysis
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
