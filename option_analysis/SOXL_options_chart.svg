@@ -26,7 +26,7 @@ svg { --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781; --grid:
 </style>
 <rect class="bg" x="0" y="0" width="440" height="518"/>
 <text class="ti" x="12" y="20">SOXL オプションの配置（ガンマと建玉）</text>
-<text class="su" x="12" y="37">株価 30.35・ゼロガンマ 32.1（+5.8%）・建玉 板 11/25</text>
+<text class="su" x="12" y="37">株価 32.02・ゼロガンマ 32.0（−0.2%）・建玉 板 11/25</text>
 <rect class="bc" x="12" y="47" width="10" height="10" rx="2"/><text class="lb" x="26" y="56">コール（上）</text>
 <rect class="bp" x="104" y="47" width="10" height="10" rx="2"/><text class="lb" x="118" y="56">プット（下）</text>
 <line class="cv" x1="194" y1="52" x2="212" y2="52"/><text class="lb" x="217" y="56">株価ごとのガンマの合計</text>
@@ -37,89 +37,114 @@ svg { --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781; --grid:
 <line class="vw" x1="172" y1="86" x2="190" y2="86"/><text class="lb" x="195" y="90">プットの壁・コールの壁（建玉が最多）</text>
 <text class="pt" x="12" y="114">株価ごとのガンマの合計（その株価になったとき）</text>
 <text class="tk" x="424" y="114" text-anchor="end">百万ドル／1%</text>
-<rect class="zn" x="58.0" y="122" width="268.6" height="120"/>
-<rect class="zp" x="326.6" y="122" width="97.4" height="120"/>
-<line class="gr" x1="58" y1="209.0" x2="424" y2="209.0"/>
-<text class="tk" x="54" y="212.5" text-anchor="end">−2.5</text>
-<line class="gr" x1="58" y1="172.1" x2="424" y2="172.1"/>
-<text class="tk" x="54" y="175.6" text-anchor="end">0</text>
-<line class="gr" x1="58" y1="135.3" x2="424" y2="135.3"/>
-<text class="tk" x="54" y="138.8" text-anchor="end">2.5</text>
-<line class="ax" x1="58" y1="172.1" x2="424" y2="172.1"/>
-<polyline class="cv" points="58.3,242.0 61.0,242.0 63.7,242.0 66.3,242.0 69.0,241.9 71.7,241.9 74.4,241.8 77.0,241.7 79.7,241.6 82.4,241.5 85.0,241.4 87.7,241.3 90.4,241.2 93.0,241.0 95.7,240.9 98.4,240.7 101.0,240.5 103.7,240.3 106.4,240.1 109.1,239.9 111.7,239.6 114.4,239.4 117.1,239.1 119.7,238.8 122.4,238.5 125.1,238.2 127.7,237.9 130.4,237.5 133.1,237.2 135.7,236.8 138.4,236.4 141.1,236.0 143.7,235.6 146.4,235.1 149.1,234.7 151.8,234.2 154.4,233.8 157.1,233.3 159.8,232.7 162.4,232.2 165.1,231.7 167.8,231.1 170.4,230.5 173.1,229.9 175.8,229.3 178.4,228.7 181.1,228.1 183.8,227.4 186.5,226.7 189.1,226.1 191.8,225.4 194.5,224.6 197.1,223.9 199.8,223.2 202.5,222.4 205.1,221.6 207.8,220.8 210.5,220.0 213.1,219.2 215.8,218.3 218.5,217.5 221.2,216.6 223.8,215.7 226.5,214.8 229.2,213.9 231.8,213.0 234.5,212.0 237.2,211.1 239.8,210.1 242.5,209.1 245.2,208.1 247.8,207.1 250.5,206.0 253.2,205.0 255.8,203.9 258.5,202.9 261.2,201.8 263.9,200.7 266.5,199.6 269.2,198.5 271.9,197.3 274.5,196.2 277.2,195.0 279.9,193.9 282.5,192.7 285.2,191.5 287.9,190.3 290.5,189.1 293.2,187.9 295.9,186.7 298.6,185.4 301.2,184.2 303.9,182.9 306.6,181.7 309.2,180.4 311.9,179.1 314.6,177.8 317.2,176.5 319.9,175.2 322.6,173.9 325.2,172.6 327.9,171.3 330.6,169.9 333.3,168.6 335.9,167.3 338.6,165.9 341.3,164.6 343.9,163.2 346.6,161.9 349.3,160.5 351.9,159.1 354.6,157.8 357.3,156.4 359.9,155.0 362.6,153.7 365.3,152.3 367.9,150.9 370.6,149.5 373.3,148.1 376.0,146.8 378.6,145.4 381.3,144.0 384.0,142.6 386.6,141.2 389.3,139.8 392.0,138.4 394.6,137.1 397.3,135.7 400.0,134.3 402.6,132.9 405.3,131.6 408.0,130.2 410.7,128.8 413.3,127.4 416.0,126.1 418.7,124.7 421.3,123.4 424.0,122.0"/>
-<line class="vf" x1="326.2" y1="122" x2="326.2" y2="242"/>
-<line class="vw" x1="75.6" y1="122" x2="75.6" y2="242"/>
-<line class="vs" x1="263.9" y1="122" x2="263.9" y2="242"/>
-<text class="nw" x="266.9" y="133">株価 30.35</text>
-<text class="nn" x="329.2" y="147" text-anchor="start">ゼロガンマ 32.1</text>
+<rect class="zn" x="58.0" y="122" width="168.0" height="120"/>
+<rect class="zp" x="226.0" y="122" width="198.0" height="120"/>
+<line class="gr" x1="58" y1="195.7" x2="424" y2="195.7"/>
+<text class="tk" x="54" y="199.2" text-anchor="end">0</text>
+<line class="gr" x1="58" y1="146.8" x2="424" y2="146.8"/>
+<text class="tk" x="54" y="150.3" text-anchor="end">5.0</text>
+<line class="ax" x1="58" y1="195.7" x2="424" y2="195.7"/>
+<polyline class="cv" points="83.1,242.0 84.9,241.8 86.7,241.7 88.5,241.5 90.2,241.3 92.0,241.1 93.8,240.9 95.6,240.7 97.4,240.5 99.2,240.3 101.0,240.0 102.8,239.8 104.6,239.5 106.4,239.2 108.2,238.9 110.0,238.6 111.8,238.3 113.6,238.0 115.4,237.7 117.2,237.3 119.0,237.0 120.8,236.6 122.6,236.2 124.4,235.8 126.2,235.4 128.0,235.0 129.8,234.6 131.6,234.1 133.4,233.7 135.2,233.2 137.0,232.7 138.8,232.2 140.6,231.7 142.4,231.2 144.2,230.7 146.0,230.2 147.8,229.6 149.6,229.0 151.4,228.5 153.2,227.9 155.0,227.3 156.8,226.7 158.6,226.1 160.3,225.4 162.1,224.8 163.9,224.1 165.7,223.5 167.5,222.8 169.3,222.1 171.1,221.4 172.9,220.7 174.7,220.0 176.5,219.2 178.3,218.5 180.1,217.8 181.9,217.0 183.7,216.2 185.5,215.4 187.3,214.6 189.1,213.8 190.9,213.0 192.7,212.2 194.5,211.4 196.3,210.5 198.1,209.7 199.9,208.8 201.7,208.0 203.5,207.1 205.3,206.2 207.1,205.3 208.9,204.5 210.7,203.6 212.5,202.6 214.3,201.7 216.1,200.8 217.9,199.9 219.7,198.9 221.5,198.0 223.3,197.1 225.1,196.1 226.9,195.2 228.7,194.2 230.4,193.2 232.2,192.3 234.0,191.3 235.8,190.3 237.6,189.3 239.4,188.3 241.2,187.4 243.0,186.4 244.8,185.4 246.6,184.4 248.4,183.4 250.2,182.4 252.0,181.4 253.8,180.4 255.6,179.4 257.4,178.4 259.2,177.4 261.0,176.4 262.8,175.4 264.6,174.4 266.4,173.4 268.2,172.4 270.0,171.4 271.8,170.4 273.6,169.4 275.4,168.4 277.2,167.4 279.0,166.4 280.8,165.4 282.6,164.4 284.4,163.4 286.2,162.4 288.0,161.5 289.8,160.5 291.6,159.5 293.4,158.5 295.2,157.6 297.0,156.6 298.8,155.7 300.5,154.7 302.3,153.8 304.1,152.8 305.9,151.9 307.7,150.9 309.5,150.0 311.3,149.1 313.1,148.2 314.9,147.2 316.7,146.3 318.5,145.4 320.3,144.5 322.1,143.7 323.9,142.8 325.7,141.9 327.5,141.0 329.3,140.1 331.1,139.3 332.9,138.4 334.7,137.6 336.5,136.7 338.3,135.9 340.1,135.1 341.9,134.3 343.7,133.4 345.5,132.6 347.3,131.8 349.1,131.0 350.9,130.2 352.7,129.5 354.5,128.7 356.3,127.9 358.1,127.2 359.9,126.4 361.7,125.6 363.5,124.9 365.3,124.2 367.1,123.4 368.9,122.7 370.6,122.0"/>
+<line class="vf" x1="225.7" y1="122" x2="225.7" y2="242"/>
+<line class="vw" x1="69.2" y1="122" x2="69.2" y2="242"/>
+<line class="vw" x1="406.0" y1="122" x2="406.0" y2="242"/>
+<line class="vs" x1="226.9" y1="122" x2="226.9" y2="242"/>
+<text class="nw" x="229.9" y="133">株価 32.02</text>
+<text class="nn" x="222.7" y="147" text-anchor="end">ゼロガンマ 32.0</text>
 <text class="pt" x="12" y="266">行使価格ごとのガンマ（今の株価で）</text>
 <text class="tk" x="424" y="266" text-anchor="end">百万ドル／1%</text>
-<line class="gr" x1="58" y1="345.5" x2="424" y2="345.5"/>
-<text class="tk" x="54" y="349.0" text-anchor="end">−1.0</text>
+<line class="gr" x1="58" y1="347.3" x2="424" y2="347.3"/>
+<text class="tk" x="54" y="350.8" text-anchor="end">−1.0</text>
 <line class="gr" x1="58" y1="320.0" x2="424" y2="320.0"/>
 <text class="tk" x="54" y="323.5" text-anchor="end">0</text>
-<line class="gr" x1="58" y1="294.5" x2="424" y2="294.5"/>
-<text class="tk" x="54" y="298.0" text-anchor="end">1.0</text>
+<line class="gr" x1="58" y1="292.7" x2="424" y2="292.7"/>
+<text class="tk" x="54" y="296.2" text-anchor="end">1.0</text>
 <line class="ax" x1="58" y1="320.0" x2="424" y2="320.0"/>
-<rect class="bc" x="73.6" y="315.6" width="4.0" height="4.4"/>
-<rect class="bp" x="73.6" y="320.0" width="4.0" height="46.0"/>
-<rect class="bc" x="108.8" y="319.3" width="4.0" height="0.7"/>
-<rect class="bp" x="108.8" y="320.0" width="4.0" height="6.5"/>
-<rect class="bc" x="143.9" y="319.1" width="4.0" height="0.9"/>
-<rect class="bp" x="143.9" y="320.0" width="4.0" height="5.4"/>
-<rect class="bc" x="179.1" y="318.5" width="4.0" height="1.5"/>
-<rect class="bp" x="179.1" y="320.0" width="4.0" height="9.6"/>
-<rect class="bc" x="214.3" y="319.4" width="4.0" height="0.6"/>
-<rect class="bp" x="214.3" y="320.0" width="4.0" height="5.9"/>
-<rect class="bc" x="249.5" y="312.1" width="4.0" height="7.9"/>
-<rect class="bp" x="249.5" y="320.0" width="4.0" height="39.3"/>
-<rect class="bc" x="284.6" y="316.5" width="4.0" height="3.5"/>
-<rect class="bp" x="284.6" y="320.0" width="4.0" height="5.5"/>
-<rect class="bc" x="319.8" y="309.6" width="4.0" height="10.4"/>
-<rect class="bp" x="319.8" y="320.0" width="4.0" height="8.9"/>
-<rect class="bc" x="355.0" y="307.9" width="4.0" height="12.1"/>
-<rect class="bp" x="355.0" y="320.0" width="4.0" height="9.8"/>
-<rect class="bc" x="390.2" y="313.8" width="4.0" height="6.2"/>
-<rect class="bp" x="390.2" y="320.0" width="4.0" height="7.1"/>
-<line class="vf" x1="326.2" y1="274" x2="326.2" y2="366"/>
-<line class="vw" x1="75.6" y1="274" x2="75.6" y2="366"/>
-<line class="vs" x1="263.9" y1="274" x2="263.9" y2="366"/>
+<rect class="bc" x="67.2" y="315.6" width="4.0" height="4.4"/>
+<rect class="bp" x="67.2" y="320.0" width="4.0" height="43.8"/>
+<rect class="bc" x="89.7" y="319.3" width="4.0" height="0.7"/>
+<rect class="bp" x="89.7" y="320.0" width="4.0" height="6.5"/>
+<rect class="bc" x="112.1" y="319.1" width="4.0" height="0.9"/>
+<rect class="bp" x="112.1" y="320.0" width="4.0" height="5.2"/>
+<rect class="bc" x="134.6" y="318.5" width="4.0" height="1.5"/>
+<rect class="bp" x="134.6" y="320.0" width="4.0" height="9.3"/>
+<rect class="bc" x="157.0" y="319.4" width="4.0" height="0.6"/>
+<rect class="bp" x="157.0" y="320.0" width="4.0" height="6.1"/>
+<rect class="bc" x="179.5" y="311.4" width="4.0" height="8.6"/>
+<rect class="bp" x="179.5" y="320.0" width="4.0" height="41.6"/>
+<rect class="bc" x="202.0" y="316.2" width="4.0" height="3.8"/>
+<rect class="bp" x="202.0" y="320.0" width="4.0" height="5.9"/>
+<rect class="bc" x="224.4" y="307.9" width="4.0" height="12.1"/>
+<rect class="bp" x="224.4" y="320.0" width="4.0" height="10.2"/>
+<rect class="bc" x="246.9" y="304.9" width="4.0" height="15.1"/>
+<rect class="bp" x="246.9" y="320.0" width="4.0" height="12.0"/>
+<rect class="bc" x="269.3" y="311.8" width="4.0" height="8.2"/>
+<rect class="bp" x="269.3" y="320.0" width="4.0" height="9.2"/>
+<rect class="bc" x="291.8" y="287.4" width="4.0" height="32.6"/>
+<rect class="bp" x="291.8" y="320.0" width="4.0" height="27.5"/>
+<rect class="bc" x="314.2" y="298.8" width="4.0" height="21.2"/>
+<rect class="bp" x="314.2" y="320.0" width="4.0" height="8.4"/>
+<rect class="bc" x="336.7" y="294.2" width="4.0" height="25.8"/>
+<rect class="bp" x="336.7" y="320.0" width="4.0" height="6.2"/>
+<rect class="bc" x="359.1" y="296.7" width="4.0" height="23.3"/>
+<rect class="bp" x="359.1" y="320.0" width="4.0" height="4.7"/>
+<rect class="bc" x="381.6" y="310.4" width="4.0" height="9.6"/>
+<rect class="bp" x="381.6" y="320.0" width="4.0" height="5.1"/>
+<rect class="bc" x="404.0" y="274.0" width="4.0" height="46.0"/>
+<rect class="bp" x="404.0" y="320.0" width="4.0" height="24.8"/>
+<line class="vf" x1="225.7" y1="274" x2="225.7" y2="366"/>
+<line class="vw" x1="69.2" y1="274" x2="69.2" y2="366"/>
+<line class="vw" x1="406.0" y1="274" x2="406.0" y2="366"/>
+<line class="vs" x1="226.9" y1="274" x2="226.9" y2="366"/>
 <text class="pt" x="12" y="388">行使価格ごとの建玉（45日以内の満期）</text>
 <text class="tk" x="424" y="388" text-anchor="end">枚</text>
-<line class="gr" x1="58" y1="484.5" x2="424" y2="484.5"/>
-<text class="tk" x="54" y="488.0" text-anchor="end">50k</text>
+<line class="gr" x1="58" y1="479.4" x2="424" y2="479.4"/>
+<text class="tk" x="54" y="482.9" text-anchor="end">50k</text>
 <line class="gr" x1="58" y1="442.0" x2="424" y2="442.0"/>
 <text class="tk" x="54" y="445.5" text-anchor="end">0</text>
-<line class="gr" x1="58" y1="399.5" x2="424" y2="399.5"/>
-<text class="tk" x="54" y="403.0" text-anchor="end">50k</text>
+<line class="gr" x1="58" y1="404.6" x2="424" y2="404.6"/>
+<text class="tk" x="54" y="408.1" text-anchor="end">50k</text>
 <line class="ax" x1="58" y1="442.0" x2="424" y2="442.0"/>
-<rect class="bc" x="73.6" y="440.2" width="4.0" height="1.8"/>
-<rect class="bp" x="73.6" y="442.0" width="4.0" height="46.0"/>
-<rect class="bc" x="108.8" y="441.7" width="4.0" height="0.6"/>
-<rect class="bp" x="108.8" y="442.0" width="4.0" height="5.5"/>
-<rect class="bc" x="143.9" y="441.6" width="4.0" height="0.6"/>
-<rect class="bp" x="143.9" y="442.0" width="4.0" height="4.5"/>
-<rect class="bc" x="179.1" y="441.4" width="4.0" height="0.6"/>
-<rect class="bp" x="179.1" y="442.0" width="4.0" height="6.7"/>
-<rect class="bc" x="214.3" y="441.8" width="4.0" height="0.6"/>
-<rect class="bp" x="214.3" y="442.0" width="4.0" height="4.0"/>
-<rect class="bc" x="249.5" y="438.5" width="4.0" height="3.5"/>
-<rect class="bp" x="249.5" y="442.0" width="4.0" height="25.0"/>
-<rect class="bc" x="284.6" y="439.6" width="4.0" height="2.4"/>
-<rect class="bp" x="284.6" y="442.0" width="4.0" height="3.0"/>
-<rect class="bc" x="319.8" y="436.6" width="4.0" height="5.4"/>
-<rect class="bp" x="319.8" y="442.0" width="4.0" height="5.3"/>
-<rect class="bc" x="355.0" y="434.7" width="4.0" height="7.3"/>
-<rect class="bp" x="355.0" y="442.0" width="4.0" height="6.7"/>
-<rect class="bc" x="390.2" y="438.2" width="4.0" height="3.8"/>
-<rect class="bp" x="390.2" y="442.0" width="4.0" height="4.6"/>
-<line class="vf" x1="326.2" y1="396" x2="326.2" y2="488"/>
-<line class="vw" x1="75.6" y1="396" x2="75.6" y2="488"/>
-<line class="vs" x1="263.9" y1="396" x2="263.9" y2="488"/>
-<text class="nw" x="78.6" y="484.0" text-anchor="start">プットの壁 25</text>
-<text class="tk" x="110.8" y="502" text-anchor="middle">26</text>
-<text class="tk" x="181.1" y="502" text-anchor="middle">28</text>
-<text class="tk" x="251.5" y="502" text-anchor="middle">30</text>
-<text class="tk" x="321.8" y="502" text-anchor="middle">32</text>
-<text class="tk" x="392.2" y="502" text-anchor="middle">34</text>
+<rect class="bc" x="67.2" y="440.4" width="4.0" height="1.6"/>
+<rect class="bp" x="67.2" y="442.0" width="4.0" height="40.4"/>
+<rect class="bc" x="89.7" y="441.7" width="4.0" height="0.6"/>
+<rect class="bp" x="89.7" y="442.0" width="4.0" height="4.9"/>
+<rect class="bc" x="112.1" y="441.6" width="4.0" height="0.6"/>
+<rect class="bp" x="112.1" y="442.0" width="4.0" height="3.9"/>
+<rect class="bc" x="134.6" y="441.5" width="4.0" height="0.6"/>
+<rect class="bp" x="134.6" y="442.0" width="4.0" height="5.9"/>
+<rect class="bc" x="157.0" y="441.8" width="4.0" height="0.6"/>
+<rect class="bp" x="157.0" y="442.0" width="4.0" height="3.5"/>
+<rect class="bc" x="179.5" y="438.9" width="4.0" height="3.1"/>
+<rect class="bp" x="179.5" y="442.0" width="4.0" height="22.0"/>
+<rect class="bc" x="202.0" y="439.9" width="4.0" height="2.1"/>
+<rect class="bp" x="202.0" y="442.0" width="4.0" height="2.6"/>
+<rect class="bc" x="224.4" y="437.2" width="4.0" height="4.8"/>
+<rect class="bp" x="224.4" y="442.0" width="4.0" height="4.6"/>
+<rect class="bc" x="246.9" y="435.5" width="4.0" height="6.5"/>
+<rect class="bp" x="246.9" y="442.0" width="4.0" height="5.9"/>
+<rect class="bc" x="269.3" y="438.7" width="4.0" height="3.3"/>
+<rect class="bp" x="269.3" y="442.0" width="4.0" height="4.1"/>
+<rect class="bc" x="291.8" y="427.0" width="4.0" height="15.0"/>
+<rect class="bp" x="291.8" y="442.0" width="4.0" height="15.8"/>
+<rect class="bc" x="314.2" y="431.0" width="4.0" height="11.0"/>
+<rect class="bp" x="314.2" y="442.0" width="4.0" height="5.4"/>
+<rect class="bc" x="336.7" y="427.5" width="4.0" height="14.5"/>
+<rect class="bp" x="336.7" y="442.0" width="4.0" height="3.9"/>
+<rect class="bc" x="359.1" y="426.3" width="4.0" height="15.7"/>
+<rect class="bp" x="359.1" y="442.0" width="4.0" height="3.6"/>
+<rect class="bc" x="381.6" y="433.1" width="4.0" height="8.9"/>
+<rect class="bp" x="381.6" y="442.0" width="4.0" height="5.0"/>
+<rect class="bc" x="404.0" y="396.0" width="4.0" height="46.0"/>
+<rect class="bp" x="404.0" y="442.0" width="4.0" height="18.2"/>
+<line class="vf" x1="225.7" y1="396" x2="225.7" y2="488"/>
+<line class="vw" x1="69.2" y1="396" x2="69.2" y2="488"/>
+<line class="vw" x1="406.0" y1="396" x2="406.0" y2="488"/>
+<line class="vs" x1="226.9" y1="396" x2="226.9" y2="488"/>
+<text class="nw" x="72.2" y="484.0" text-anchor="start">プットの壁 25</text>
+<text class="nw" x="403.0" y="406.0" text-anchor="end">コールの壁 40</text>
+<text class="tk" x="69.2" y="502" text-anchor="middle">25</text>
+<text class="tk" x="181.5" y="502" text-anchor="middle">30</text>
+<text class="tk" x="293.8" y="502" text-anchor="middle">35</text>
+<text class="tk" x="406.0" y="502" text-anchor="middle">40</text>
 </svg>
