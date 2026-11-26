@@ -26,7 +26,7 @@ svg { --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781; --grid:
 </style>
 <rect class="bg" x="0" y="0" width="440" height="518"/>
 <text class="ti" x="12" y="20">SOXX オプションの配置（ガンマと建玉）</text>
-<text class="su" x="12" y="37">株価 127.98・ゼロガンマ 144.3（+12.7%）・建玉 板 11/25</text>
+<text class="su" x="12" y="37">株価 127.98・ゼロガンマ 144.2（+12.7%）・建玉 板 11/25</text>
 <rect class="bc" x="12" y="47" width="10" height="10" rx="2"/><text class="lb" x="26" y="56">コール（上）</text>
 <rect class="bp" x="104" y="47" width="10" height="10" rx="2"/><text class="lb" x="118" y="56">プット（下）</text>
 <line class="cv" x1="194" y1="52" x2="212" y2="52"/><text class="lb" x="217" y="56">株価ごとのガンマの合計</text>
@@ -39,18 +39,18 @@ svg { --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781; --grid:
 <text class="tk" x="424" y="114" text-anchor="end">百万ドル／1%</text>
 <rect class="zn" x="58.0" y="122" width="262.4" height="120"/>
 <rect class="zp" x="320.4" y="122" width="103.6" height="120"/>
-<line class="gr" x1="58" y1="220.9" x2="424" y2="220.9"/>
-<text class="tk" x="54" y="224.4" text-anchor="end">−50</text>
-<line class="gr" x1="58" y1="165.4" x2="424" y2="165.4"/>
-<text class="tk" x="54" y="168.9" text-anchor="end">0</text>
-<line class="ax" x1="58" y1="165.4" x2="424" y2="165.4"/>
-<polyline class="cv" points="58.0,231.3 60.4,231.9 62.7,232.4 65.1,232.9 67.5,233.5 69.9,234.0 72.2,234.5 74.6,235.0 77.0,235.4 79.4,235.9 81.7,236.4 84.1,236.8 86.5,237.2 88.9,237.6 91.2,238.0 93.6,238.4 96.0,238.8 98.4,239.1 100.7,239.5 103.1,239.8 105.5,240.1 107.9,240.4 110.2,240.6 112.6,240.9 115.0,241.1 117.4,241.3 119.7,241.5 122.1,241.6 124.5,241.7 126.9,241.8 129.2,241.9 131.6,242.0 134.0,242.0 136.4,242.0 138.7,242.0 141.1,241.9 143.5,241.8 145.9,241.7 148.2,241.5 150.6,241.4 153.0,241.1 155.4,240.9 157.7,240.6 160.1,240.3 162.5,240.0 164.9,239.6 167.2,239.2 169.6,238.8 172.0,238.3 174.3,237.8 176.7,237.2 179.1,236.7 181.5,236.1 183.8,235.4 186.2,234.8 188.6,234.1 191.0,233.3 193.3,232.6 195.7,231.8 198.1,231.0 200.5,230.1 202.8,229.3 205.2,228.4 207.6,227.5 210.0,226.5 212.3,225.5 214.7,224.5 217.1,223.5 219.5,222.5 221.8,221.4 224.2,220.3 226.6,219.2 229.0,218.1 231.3,217.0 233.7,215.8 236.1,214.7 238.5,213.5 240.8,212.3 243.2,211.1 245.6,209.8 248.0,208.6 250.3,207.3 252.7,206.1 255.1,204.8 257.5,203.5 259.8,202.2 262.2,200.9 264.6,199.6 267.0,198.3 269.3,196.9 271.7,195.6 274.1,194.2 276.5,192.8 278.8,191.5 281.2,190.1 283.6,188.7 285.9,187.3 288.3,185.9 290.7,184.5 293.1,183.0 295.4,181.6 297.8,180.1 300.2,178.7 302.6,177.2 304.9,175.8 307.3,174.3 309.7,172.8 312.1,171.3 314.4,169.8 316.8,168.3 319.2,166.8 321.6,165.3 323.9,163.7 326.3,162.2 328.7,160.7 331.1,159.2 333.4,157.6 335.8,156.1 338.2,154.6 340.6,153.0 342.9,151.5 345.3,150.0 347.7,148.4 350.1,146.9 352.4,145.4 354.8,143.8 357.2,142.3 359.6,140.8 361.9,139.3 364.3,137.8 366.7,136.3 369.1,134.8 371.4,133.4 373.8,131.9 376.2,130.5 378.6,129.0 380.9,127.6 383.3,126.2 385.7,124.8 388.1,123.4 390.4,122.0"/>
-<line class="vf" x1="321.3" y1="122" x2="321.3" y2="242"/>
+<line class="gr" x1="58" y1="220.7" x2="424" y2="220.7"/>
+<text class="tk" x="54" y="224.2" text-anchor="end">−50</text>
+<line class="gr" x1="58" y1="168.7" x2="424" y2="168.7"/>
+<text class="tk" x="54" y="172.2" text-anchor="end">0</text>
+<line class="ax" x1="58" y1="168.7" x2="424" y2="168.7"/>
+<polyline class="cv" points="58.0,231.2 60.4,231.7 62.7,232.3 65.1,232.8 67.5,233.3 69.9,233.8 72.2,234.2 74.6,234.7 77.0,235.2 79.4,235.6 81.7,236.1 84.1,236.5 86.5,236.9 88.9,237.3 91.2,237.7 93.6,238.1 96.0,238.4 98.4,238.8 100.7,239.1 103.1,239.5 105.5,239.8 107.9,240.1 110.2,240.3 112.6,240.6 115.0,240.8 117.4,241.0 119.7,241.2 122.1,241.4 124.5,241.6 126.9,241.7 129.2,241.8 131.6,241.9 134.0,242.0 136.4,242.0 138.7,242.0 141.1,242.0 143.5,241.9 145.9,241.9 148.2,241.8 150.6,241.6 153.0,241.5 155.4,241.3 157.7,241.1 160.1,240.8 162.5,240.5 164.9,240.2 167.2,239.9 169.6,239.5 172.0,239.1 174.3,238.6 176.7,238.2 179.1,237.7 181.5,237.1 183.8,236.6 186.2,236.0 188.6,235.4 191.0,234.7 193.3,234.0 195.7,233.3 198.1,232.6 200.5,231.8 202.8,231.0 205.2,230.2 207.6,229.3 210.0,228.4 212.3,227.5 214.7,226.6 217.1,225.6 219.5,224.6 221.8,223.6 224.2,222.6 226.6,221.5 229.0,220.4 231.3,219.3 233.7,218.2 236.1,217.0 238.5,215.9 240.8,214.7 243.2,213.5 245.6,212.3 248.0,211.1 250.3,209.9 252.7,208.6 255.1,207.4 257.5,206.1 259.8,204.9 262.2,203.6 264.6,202.3 267.0,201.1 269.3,199.8 271.7,198.5 274.1,197.2 276.5,195.9 278.8,194.6 281.2,193.3 283.6,191.9 285.9,190.6 288.3,189.2 290.7,187.8 293.1,186.4 295.4,185.0 297.8,183.6 300.2,182.1 302.6,180.7 304.9,179.2 307.3,177.7 309.7,176.2 312.1,174.6 314.4,173.1 316.8,171.5 319.2,169.9 321.6,168.3 323.9,166.7 326.3,165.1 328.7,163.5 331.1,161.8 333.4,160.2 335.8,158.5 338.2,156.9 340.6,155.2 342.9,153.5 345.3,151.9 347.7,150.2 350.1,148.5 352.4,146.9 354.8,145.2 357.2,143.6 359.6,141.9 361.9,140.3 364.3,138.7 366.7,137.1 369.1,135.5 371.4,133.9 373.8,132.4 376.2,130.8 378.6,129.3 380.9,127.8 383.3,126.3 385.7,124.9 388.1,123.4 390.4,122.0"/>
+<line class="vf" x1="321.0" y1="122" x2="321.0" y2="242"/>
 <line class="vw" x1="178.4" y1="122" x2="178.4" y2="242"/>
 <line class="vw" x1="401.0" y1="122" x2="401.0" y2="242"/>
 <line class="vs" x1="200.5" y1="122" x2="200.5" y2="242"/>
 <text class="nw" x="203.5" y="133">株価 127.98</text>
-<text class="nn" x="324.3" y="147" text-anchor="start">ゼロガンマ 144.3</text>
+<text class="nn" x="324.0" y="147" text-anchor="start">ゼロガンマ 144.2</text>
 <text class="pt" x="12" y="266">行使価格ごとのガンマ（今の株価で）</text>
 <text class="tk" x="424" y="266" text-anchor="end">百万ドル／1%</text>
 <line class="gr" x1="58" y1="353.2" x2="424" y2="353.2"/>
@@ -61,9 +61,9 @@ svg { --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781; --grid:
 <text class="tk" x="54" y="290.3" text-anchor="end">10</text>
 <line class="ax" x1="58" y1="320.0" x2="424" y2="320.0"/>
 <rect class="bc" x="66.2" y="319.8" width="1.7" height="0.6"/>
-<rect class="bp" x="66.2" y="320.0" width="1.7" height="29.3"/>
+<rect class="bp" x="66.2" y="320.0" width="1.7" height="29.2"/>
 <rect class="bc" x="78.6" y="319.9" width="1.7" height="0.6"/>
-<rect class="bp" x="78.6" y="320.0" width="1.7" height="1.2"/>
+<rect class="bp" x="78.6" y="320.0" width="1.7" height="0.9"/>
 <rect class="bc" x="90.9" y="319.9" width="1.7" height="0.6"/>
 <rect class="bp" x="90.9" y="320.0" width="1.7" height="1.8"/>
 <rect class="bc" x="103.3" y="319.8" width="1.7" height="0.6"/>
@@ -103,7 +103,7 @@ svg { --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781; --grid:
 <rect class="bc" x="214.6" y="301.6" width="1.7" height="18.4"/>
 <rect class="bp" x="214.6" y="320.0" width="1.7" height="45.1"/>
 <rect class="bc" x="222.0" y="319.8" width="1.7" height="0.6"/>
-<rect class="bp" x="222.0" y="320.0" width="1.7" height="2.5"/>
+<rect class="bp" x="222.0" y="320.0" width="1.7" height="2.7"/>
 <rect class="bc" x="227.0" y="318.4" width="1.7" height="1.6"/>
 <rect class="bp" x="227.0" y="320.0" width="1.7" height="3.3"/>
 <rect class="bc" x="229.4" y="319.4" width="1.7" height="0.6"/>
@@ -116,75 +116,75 @@ svg { --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781; --grid:
 <rect class="bp" x="244.3" y="320.0" width="1.7" height="0.6"/>
 <rect class="bc" x="251.7" y="306.8" width="1.7" height="13.2"/>
 <rect class="bp" x="251.7" y="320.0" width="1.7" height="13.0"/>
-<rect class="bc" x="259.1" y="319.4" width="1.7" height="0.6"/>
+<rect class="bc" x="259.1" y="319.6" width="1.7" height="0.6"/>
 <rect class="bp" x="259.1" y="320.0" width="1.7" height="0.6"/>
 <rect class="bc" x="264.1" y="319.7" width="1.7" height="0.6"/>
-<rect class="bp" x="264.1" y="320.0" width="1.7" height="5.5"/>
+<rect class="bp" x="264.1" y="320.0" width="1.7" height="5.4"/>
 <rect class="bc" x="266.6" y="319.4" width="1.7" height="0.6"/>
 <rect class="bp" x="266.6" y="320.0" width="1.7" height="0.6"/>
-<rect class="bc" x="270.3" y="319.4" width="1.7" height="0.6"/>
+<rect class="bc" x="270.3" y="319.7" width="1.7" height="0.6"/>
 <rect class="bp" x="270.3" y="320.0" width="1.7" height="0.6"/>
-<rect class="bc" x="274.0" y="319.1" width="1.7" height="0.9"/>
+<rect class="bc" x="274.0" y="319.5" width="1.7" height="0.6"/>
 <rect class="bp" x="274.0" y="320.0" width="1.7" height="0.6"/>
-<rect class="bc" x="276.4" y="318.2" width="1.7" height="1.8"/>
-<rect class="bp" x="276.4" y="320.0" width="1.7" height="4.0"/>
-<rect class="bc" x="281.4" y="319.8" width="1.7" height="0.6"/>
-<rect class="bp" x="281.4" y="320.0" width="1.7" height="1.1"/>
-<rect class="bc" x="288.8" y="305.2" width="1.7" height="14.8"/>
-<rect class="bp" x="288.8" y="320.0" width="1.7" height="29.8"/>
-<rect class="bc" x="296.2" y="319.2" width="1.7" height="0.8"/>
+<rect class="bc" x="276.4" y="318.4" width="1.7" height="1.6"/>
+<rect class="bp" x="276.4" y="320.0" width="1.7" height="3.5"/>
+<rect class="bc" x="281.4" y="319.9" width="1.7" height="0.6"/>
+<rect class="bp" x="281.4" y="320.0" width="1.7" height="0.7"/>
+<rect class="bc" x="288.8" y="305.8" width="1.7" height="14.2"/>
+<rect class="bp" x="288.8" y="320.0" width="1.7" height="29.1"/>
+<rect class="bc" x="296.2" y="319.3" width="1.7" height="0.7"/>
 <rect class="bp" x="296.2" y="320.0" width="1.7" height="0.6"/>
 <rect class="bc" x="301.2" y="319.2" width="1.7" height="0.8"/>
-<rect class="bp" x="301.2" y="320.0" width="1.7" height="7.5"/>
-<rect class="bc" x="303.7" y="319.3" width="1.7" height="0.7"/>
+<rect class="bp" x="301.2" y="320.0" width="1.7" height="7.0"/>
+<rect class="bc" x="303.7" y="319.4" width="1.7" height="0.6"/>
 <rect class="bp" x="303.7" y="320.0" width="1.7" height="0.6"/>
-<rect class="bc" x="311.1" y="319.7" width="1.7" height="0.6"/>
+<rect class="bc" x="311.1" y="319.8" width="1.7" height="0.6"/>
 <rect class="bp" x="311.1" y="320.0" width="1.7" height="0.6"/>
 <rect class="bc" x="313.5" y="318.9" width="1.7" height="1.1"/>
-<rect class="bp" x="313.5" y="320.0" width="1.7" height="9.9"/>
-<rect class="bc" x="318.5" y="319.8" width="1.7" height="0.6"/>
+<rect class="bp" x="313.5" y="320.0" width="1.7" height="9.6"/>
+<rect class="bc" x="318.5" y="319.9" width="1.7" height="0.6"/>
 <rect class="bp" x="318.5" y="320.0" width="1.7" height="0.6"/>
-<rect class="bc" x="325.9" y="296.1" width="1.7" height="23.9"/>
-<rect class="bp" x="325.9" y="320.0" width="1.7" height="9.9"/>
-<rect class="bc" x="333.3" y="317.6" width="1.7" height="2.4"/>
+<rect class="bc" x="325.9" y="300.7" width="1.7" height="19.3"/>
+<rect class="bp" x="325.9" y="320.0" width="1.7" height="9.5"/>
+<rect class="bc" x="333.3" y="318.6" width="1.7" height="1.4"/>
 <rect class="bp" x="333.3" y="320.0" width="1.7" height="0.6"/>
-<rect class="bc" x="338.3" y="318.3" width="1.7" height="1.7"/>
-<rect class="bp" x="338.3" y="320.0" width="1.7" height="6.5"/>
+<rect class="bc" x="338.3" y="318.4" width="1.7" height="1.6"/>
+<rect class="bp" x="338.3" y="320.0" width="1.7" height="5.6"/>
 <rect class="bc" x="340.8" y="319.0" width="1.7" height="1.0"/>
 <rect class="bp" x="340.8" y="320.0" width="1.7" height="0.6"/>
-<rect class="bc" x="348.2" y="319.8" width="1.7" height="0.6"/>
+<rect class="bc" x="348.2" y="319.9" width="1.7" height="0.6"/>
 <rect class="bp" x="348.2" y="320.0" width="1.7" height="0.6"/>
 <rect class="bc" x="350.6" y="318.7" width="1.7" height="1.3"/>
-<rect class="bp" x="350.6" y="320.0" width="1.7" height="3.1"/>
-<rect class="bc" x="355.6" y="319.0" width="1.7" height="1.0"/>
+<rect class="bp" x="350.6" y="320.0" width="1.7" height="2.9"/>
+<rect class="bc" x="355.6" y="319.1" width="1.7" height="0.9"/>
 <rect class="bp" x="355.6" y="320.0" width="1.7" height="0.6"/>
-<rect class="bc" x="363.0" y="304.2" width="1.7" height="15.8"/>
-<rect class="bp" x="363.0" y="320.0" width="1.7" height="22.7"/>
+<rect class="bc" x="363.0" y="304.7" width="1.7" height="15.3"/>
+<rect class="bp" x="363.0" y="320.0" width="1.7" height="22.1"/>
 <rect class="bc" x="370.5" y="319.9" width="1.7" height="0.6"/>
 <rect class="bp" x="370.5" y="320.0" width="1.7" height="0.6"/>
-<rect class="bc" x="375.4" y="318.7" width="1.7" height="1.3"/>
+<rect class="bc" x="375.4" y="318.8" width="1.7" height="1.2"/>
 <rect class="bp" x="375.4" y="320.0" width="1.7" height="9.6"/>
 <rect class="bc" x="377.9" y="320.0" width="1.7" height="0.6"/>
 <rect class="bp" x="377.9" y="320.0" width="1.7" height="0.6"/>
 <rect class="bc" x="381.6" y="319.9" width="1.7" height="0.6"/>
 <rect class="bc" x="385.3" y="320.0" width="1.7" height="0.6"/>
 <rect class="bp" x="385.3" y="320.0" width="1.7" height="0.6"/>
-<rect class="bc" x="387.7" y="318.9" width="1.7" height="1.1"/>
+<rect class="bc" x="387.7" y="319.0" width="1.7" height="1.0"/>
 <rect class="bp" x="387.7" y="320.0" width="1.7" height="10.4"/>
 <rect class="bc" x="392.7" y="320.0" width="1.7" height="0.6"/>
 <rect class="bp" x="392.7" y="320.0" width="1.7" height="0.6"/>
-<rect class="bc" x="400.1" y="285.8" width="1.7" height="34.2"/>
+<rect class="bc" x="400.1" y="285.9" width="1.7" height="34.1"/>
 <rect class="bp" x="400.1" y="320.0" width="1.7" height="3.6"/>
 <rect class="bc" x="407.6" y="320.0" width="1.7" height="0.6"/>
 <rect class="bp" x="407.6" y="320.0" width="1.7" height="0.6"/>
-<rect class="bc" x="412.5" y="318.8" width="1.7" height="1.2"/>
-<rect class="bp" x="412.5" y="320.0" width="1.7" height="11.2"/>
+<rect class="bc" x="412.5" y="318.9" width="1.7" height="1.1"/>
+<rect class="bp" x="412.5" y="320.0" width="1.7" height="11.1"/>
 <rect class="bc" x="415.0" y="319.9" width="1.7" height="0.6"/>
 <rect class="bp" x="415.0" y="320.0" width="1.7" height="0.6"/>
 <rect class="bc" x="418.7" y="320.0" width="1.7" height="0.6"/>
 <rect class="bc" x="422.4" y="320.0" width="1.7" height="0.6"/>
 <rect class="bp" x="422.4" y="320.0" width="1.7" height="0.6"/>
-<line class="vf" x1="321.3" y1="274" x2="321.3" y2="366"/>
+<line class="vf" x1="321.0" y1="274" x2="321.0" y2="366"/>
 <line class="vw" x1="178.4" y1="274" x2="178.4" y2="366"/>
 <line class="vw" x1="401.0" y1="274" x2="401.0" y2="366"/>
 <line class="vs" x1="200.5" y1="274" x2="200.5" y2="366"/>
@@ -321,7 +321,7 @@ svg { --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781; --grid:
 <rect class="bc" x="418.7" y="442.0" width="1.7" height="0.6"/>
 <rect class="bc" x="422.4" y="442.0" width="1.7" height="0.6"/>
 <rect class="bp" x="422.4" y="442.0" width="1.7" height="0.6"/>
-<line class="vf" x1="321.3" y1="396" x2="321.3" y2="488"/>
+<line class="vf" x1="321.0" y1="396" x2="321.0" y2="488"/>
 <line class="vw" x1="178.4" y1="396" x2="178.4" y2="488"/>
 <line class="vw" x1="401.0" y1="396" x2="401.0" y2="488"/>
 <line class="vs" x1="200.5" y1="396" x2="200.5" y2="488"/>
